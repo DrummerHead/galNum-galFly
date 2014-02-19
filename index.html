@@ -1,0 +1,146 @@
+<!doctype html>
+<html>
+<head>
+<title>galNum & galFly</title>
+<meta charset='utf-8'>
+<meta name='author' content='DrummerHead'>
+<meta name='description' content=''>
+<meta name='' content=''>
+<meta name='' content=''>
+<link rel='stylesheet' href='css/stijl.css'>
+</head>
+<body>
+
+
+
+<header>
+<div class='vessel'>
+  <h1>galNum & galFly</h1>
+  <strong><a href='http://en.wikipedia.org/wiki/Bookmarklet' rel='external'>Bookmarklets</a> for creating image galleries on the fly</strong>
+</div>
+</header>
+
+
+
+<section id='galNum'>
+<div class='vessel'>
+  <h2>galNum Bookmarklet</h2>
+  <a href="javascript:(function(){var css=%22body{font-family:sans-serif;margin:0}header{background-color:#eee}.vessel{max-width:40em;margin:0 auto;padding:1em 0}#hb{font-size:1.2em}#hb span{color:gray}#hb b{color:#444;cursor:pointer}#hb.done b{color:gray;cursor:auto;font-weight:400}#hb b.s{color:#444;cursor:auto;font-weight:700}form{display:none;margin-top:1em}.v{display:block}#move,main{text-align:center}#gal{padding:1em;margin:0;list-style-type:none}#gal li{min-height:%22+innerHeight+%22px;padding:4em 0}#gal img{display:block;max-width:100%25;margin:0 auto;font-size:3em;color:#ccc}#gal a{display:inline-block;padding:1em;text-decoration:none;color:#ccc}#gal a:hover{color:gray;text-decoration:underline}#move{position:fixed;bottom:0;left:0;width:5em;padding:0;margin:0;font-size:1.4em;list-style-type:none;color:#888;-webkit-user-select:none;-moz-user-select:none;user-select:none}#move li{float:left;width:2.75em;height:2em;line-height:2em;cursor:pointer}#move li:hover{color:#444}#down,#up{text-indent:.5em}#down{clear:left}#move #zoom{width:2em;text-indent:-.5em}#more{padding:1em;font-size:1.5em;font-weight:700;background-color:#eee;color:#888;cursor:pointer}#more:hover{background-color:#ddd;color:#777}%22;var js=%27!function(t,e){var n,i=function(e){return t.querySelector(e)},r=function(t){return parseInt(t,10)},a=function(){return{defaultShift:25,currentImage:0,minImage:0,maxImage:this.defaultShift,init:function(t){var e=this;e.galWidth=parseInt(getComputedStyle(t).getPropertyValue(%22width%22),10),onkeypress=function(t){106==t.charCode?e.goToImage(!0):107==t.charCode?e.goToImage(!1):108==t.charCode&&e.zoom(i(%22#a%22+e.currentImage))},i(%22#down%22).addEventListener(%22click%22,function(){e.goToImage(!0)}),i(%22#up%22).addEventListener(%22click%22,function(){e.goToImage(!1)}),i(%22#zoom%22).addEventListener(%22click%22,function(){e.zoom(i(%22#a%22+e.currentImage))})},goToImage:function(t){t?this.currentImage+1>=this.maxImage?scrollTo(0,scrollMaxY):scrollTo(0,i(%22#a%22+ ++this.currentImage).offsetTop-5):this.currentImage-1>=this.minImage&&scrollTo(0,i(%22#a%22+--this.currentImage).offsetTop-5)},zoom:function(t){var e=t.currentTarget||t,n=e.naturalWidth*(e.ct+1);n<=this.galWidth?(e.ct++,e.setAttribute(%22style%22,%22width:%22+n+%22px;height:%22+e.naturalHeight*e.ct+%22px%22)):(e.ct=0,e.setAttribute(%22style%22,%22width:100%25%22))},bindResize:function(t){for(var e=0;e<t.length;e++){var n=t.item(e);n.ct=1,n.addEventListener(%22click%22,this.zoom.bind(this))}}}}(),o=i(%22#hb%22),c=i(%22#start%22),s=i(%22#shift%22),u=i(%22form%22),l=i(%22main%22),d=%22%22,m=e.split(/(\\d+)/).map(function(t){return{prt:t,isN:/^\\d+$/.test(t),isS:!1}}),h=function(t){var e=[%22%22,%22%22],n=0;for(chunk in t)t[chunk].isS?n=1:e[n]+=t[chunk].prt;return e},f=function(t,e){for(var n=%22%22+t;n.length<e;)n=%220%22+n;return n},g=function(e,o){l.innerHTML=%22%22;var s=\%27<ul id=%22gal%22>\%27,u=/^0*/.test(e),d=a.maxImage=r(e)+r(o);a.currentImage=a.minImage=r(e);for(var m=r(e);d>m;m++){var h=u?f(m,e.length):m,v=n[0]+h+n[1];s+=\%27<li><img id=%22a\%27+m+\%27%22 src=%22\%27+v+\%27%22 alt=%22\%27+h+\%27%22><a href=%22\%27+v+\%27%22>\%27+v+%22</a></li>%22}s+=%22</ul>%22,l.innerHTML=s,l.insertAdjacentHTML(%22beforeEnd%22,\%27<div id=%22more%22>Load more</div>\%27),i(%22#more%22).addEventListener(%22click%22,function(){scrollTo(0,0);var t=u?f(d,e.length):d;c.value=t,g(t,o)}),a.bindResize(t.querySelectorAll(%22img%22))};for(part in m){var v=m[part];d+=v.isN?\%27<b data-position=%22\%27+part+\%27%22>\%27+v.prt+%22</b>%22:%22<span>%22+v.prt+%22</span>%22}o.innerHTML=d;for(var p=t.querySelectorAll(%22#hb b%22),I=0;I<p.length;I++){var v=p.item(I);v.addEventListener(%22click%22,function(){u.classList.add(%22v%22),o.classList.add(%22done%22),this.classList.add(%22s%22),m[this.getAttribute(%22data-position%22)].isS=!0,n=h(m),c.value=this.textContent,s.value=a.defaultShift})}a.init(l),u.addEventListener(%22submit%22,function(t){t.preventDefault(),g(c.value,s.value)})}(document,href)%27; var html = %22<!doctype html><html><head><title>galNum</title><meta charset=%27utf-8%27><style>%22 + css + %22</style></head><body><header><div class=%27vessel%27><div id=%27hb%27></div><form><label>start <input type=%27number%27 id=%27start%27></label> <label>shift <input type=%27number%27 id=%27shift%27></label> <button type=%27submit%27>go</button></form></div></header><main></main><ol id=%27move%27><li id=%27up%27>&#9650;</li><li id=%27down%27>&#9660;</li><li id=%27zoom%27>&#128269;</li></ol><script>var href = %27%22+location.href+%22%27</script><script>%22 + js + %22</script></body></html>%22; document.write(html); document.close(); })();" class='bookmarklet' title='Drag me to your Bookmarks Toolbar'>galNum</a>
+  <small>To &#8220;install&#8221; this bookmarklet, just drag the big link above to your Bookmarks Toolbat. Voilà!</small>
+
+  <p>There are a lot of images on the internet that follow a numeric progression. If there's an <code>autumn-wallpaper-001.jpg</code> there probably is an <code>autumn-wallpaper-002.jpg</code> and even more.</p>
+  <p>With galNum you can easily create a gallery of images that follow a numeric progression pattern.</p>
+  <ol class='use-steps'>
+    <li>
+      <span class='nice-bullet'>1</span>
+      <div class='instructions'>
+        <p>First, &#8220;install&#8221; the bookmarklet above. Now, when you serendipitously find an image that you think is part of a set, click on the galNum bookmarklet</p>
+      </div>
+      <div class='illustration'>
+        <img src='img/galNum-01.jpg' alt='galNum step 1'>
+      </div>
+    </li>
+    <li>
+      <span class='nice-bullet'>2</span>
+      <div class='instructions'>
+        <p>Now you'll be presented with the URL with its numbers highlighted. In this case we think the progression happens at the 001 part, so we click it!</p>
+      </div>
+      <div class='illustration'>
+        <img src='img/galNum-02.jpg' alt='galNum step 2'>
+      </div>
+    </li>
+    <li>
+      <span class='nice-bullet'>3</span>
+      <div class='instructions'>
+        <p>We can select where to start from (by default this is filled with the same number we clicked) and we can select how many images at a time we want to see (by default 25)</p>
+        <p>The default settings are generally fine, but we can change them if we want. Now click on <code>go</code>!</p>
+      </div>
+      <div class='illustration'>
+        <img src='img/galNum-03.jpg' alt='galNum step 3'>
+      </div>
+    </li>
+    <li>
+      <span class='nice-bullet'>4</span>
+      <div class='instructions'>
+        <p>The gallery is generated! We see 25 images and we can click on <code>load more</code> at the bottom to see more. Eventually there will be no more images, but the script will still try to generate them. It's our human job to just quit it and do something else :)</p>
+        <p>Refer to <a href='#common-features'>Common Features</a> to know more about navigation and zooming.</p>
+      </div>
+      <div class='illustration'>
+        <img src='img/galNum-04.jpg' alt='galNum step 4'>
+      </div>
+    </li>
+  </ol>
+</div>
+</section>
+
+
+
+
+
+
+<section id='galFly'>
+<div class='vessel'>
+  <h2>galFly Bookmarklet</h2>
+  <a href="javascript:(function(){var imgs=Array.prototype.filter.call(document.links,function(val){return /\.(jpe?g|gif|png|tiff|svg)(\?.*)?$/i.test(val.href);});var noRepeats=[];for(var i=0;i<imgs.length;i++){if(imgs[i].href !== imgs[(i+1) %25 imgs.length].href){noRepeats.push(imgs[i])}}var lis=noRepeats.map(function(val,i){return %27<li><img id=%22a%27 + i + %27%22 src=%22%27 + val.href + %27%22 alt=%22%27 + val.href + %27%22><a href=%22%27 + val.href + %27%22>%27 + val.textContent + %27</a></li>%27; });var stringified=JSON.stringify(lis).replace(/\\/g, %27\\\\%27).replace(/%27/g, %27\\\%27%27);var css=%22body{margin:0;font-family:sans-serif;text-align:center}#gal{padding:1em;margin:0;list-style-type:none}#gal li{min-height:%22+innerHeight+%22px;padding:4em 0}#gal img{display:block;max-width:100%25;margin:0 auto;font-size:3em;color:#ccc}#gal a{display:inline-block;padding:1em;text-decoration:none;color:#ccc}#gal a:hover{color:gray;text-decoration:underline}#move{position:fixed;bottom:0;left:0;width:5em;padding:0;margin:0;font-size:1.4em;list-style-type:none;color:#888;-webkit-user-select:none;-moz-user-select:none;user-select:none}#move li{float:left;width:2.75em;height:2em;line-height:2em;cursor:pointer}#move li:hover{color:#444}#down,#up{text-indent:.5em}#down{clear:left}#move #zoom{width:2em;text-indent:-.5em}#more{padding:1em;font-size:1.5em;font-weight:700;background-color:#eee;color:#888;cursor:pointer}#more:hover{background-color:#ddd;color:#777}#end{background-color:#ffb1ba;height:10em}%22;var js=%27!function(t,e){var n=function(e){return t.querySelector(e)},i=function(){return{defaultShift:25,currentImage:0,minImage:0,maxImage:this.defaultShift,init:function(t){var e=this;e.galWidth=parseInt(getComputedStyle(t).getPropertyValue(%22width%22),10),onkeypress=function(t){106==t.charCode?e.goToImage(!0):107==t.charCode?e.goToImage(!1):108==t.charCode&&e.zoom(n(%22#a%22+e.currentImage))},n(%22#down%22).addEventListener(%22click%22,function(){e.goToImage(!0)}),n(%22#up%22).addEventListener(%22click%22,function(){e.goToImage(!1)}),n(%22#zoom%22).addEventListener(%22click%22,function(){e.zoom(n(%22#a%22+e.currentImage))})},goToImage:function(t){t?this.currentImage+1>=this.maxImage?scrollTo(0,scrollMaxY):scrollTo(0,n(%22#a%22+ ++this.currentImage).offsetTop-5):this.currentImage-1>=this.minImage&&scrollTo(0,n(%22#a%22+--this.currentImage).offsetTop-5)},zoom:function(t){var e=t.currentTarget||t,n=e.naturalWidth*(e.ct+1);n<=this.galWidth?(e.ct++,e.setAttribute(%22style%22,%22width:%22+n+%22px;height:%22+e.naturalHeight*e.ct+%22px%22)):(e.ct=0,e.setAttribute(%22style%22,%22width:100%25%22))},bindResize:function(t){for(var e=0;e<t.length;e++){var n=t.item(e);n.ct=1,n.addEventListener(%22click%22,this.zoom.bind(this))}}}}(),r=n(%22#gal%22),a=JSON.parse(e),o=i.defaultShift,c=function(e){var s=r.innerHTML=%22%22;if(i.currentImage=i.minImage=e,a.length>o){for(var u=e;u<e+i.defaultShift;u++)s+=a[u];o+=i.defaultShift,i.maxImage=e+i.defaultShift,r.insertAdjacentHTML(%22afterEnd%22,\%27<div id=%22more%22>Load more</div>\%27),n(%22#more%22).addEventListener(%22click%22,function(){scrollTo(0,0),this.outerHTML=%22%22,c(e+i.defaultShift)})}else{for(var u=e;u<a.length;u++)s+=a[u];i.maxImage=a.length,r.insertAdjacentHTML(%22afterEnd%22,\%27<div id=%22end%22></div>\%27)}r.innerHTML=s,i.bindResize(t.querySelectorAll(%22img%22))};i.init(r),c(0)}(document,stringified)%27; var html = %22<!doctype html><html><head><title>galFly</title><meta charset=%27utf-8%27><style>%22 + css + %22</style></head><body><ul id=%27gal%27></ul><ol id=%27move%27><li id=%27up%27>&#9650;</li><li id=%27down%27>&#9660;</li><li id=%27zoom%27>&#128269;</li></ol><script>var stringified=%27%22+stringified+%22%27</script><script>%22 + js + %22</script></body></html>%22;document.write(html);document.close();})();" class='bookmarklet' title='Drag me to your Bookmarks Toolbar'>galFly</a>
+  <small>To &#8220;install&#8221; this bookmarklet, just drag the big link above to your Bookmarks Toolbat. Voilà!</small>
+
+  <p>In some cases you just find a lot of links that point to images! No number progression to analyze, just the raw links there for us to partake. Classically you would have to open these links in new tabs one by one, but with galFly we can just create a gallery right where we are!</p>
+  <ol class='use-steps'>
+    <li>
+      <span class='nice-bullet'>1</span>
+      <div class='instructions'>
+        <p>First, &#8220;install&#8221; the bookmarklet above. Now, when you serendipitously find an index or page with lots of links to images, click on galFly</p>
+      </div>
+      <div class='illustration'>
+        <img src='img/galFly-01.jpg' alt='galFly step 1'>
+      </div>
+    </li>
+    <li>
+      <span class='nice-bullet'>2</span>
+      <div class='instructions'>
+        <p>That's it! The gallery generates showing us 25 images at a time (in this case this setting is not modifiable, unless you <a href='https://github.com/DrummerHead/JS-Inject/blob/master/examples/galFly/gedrag.js' rel='external'>change the code</a>)</p>
+        <p>You can use galFly in any site that has links that point to images to get a gallery instantly.</p>
+        <p>Refer to <a href='#common-features'>Common Features</a> to know more about navigation and zooming.</p>
+      </div>
+      <div class='illustration'>
+        <img src='img/galFly-02.jpg' alt='galFly step 2'>
+      </div>
+    </li>
+  </ol>
+</div>
+</section>
+
+
+
+<section id='common-features'>
+<div class='vessel'>
+  <h2>Common features</h2>
+  <img src='img/galCommons.jpg' alt='Common features for galNum & galFly'>
+  <ol class='use-steps'>
+    <li>
+      <span class='nice-bullet'>1</span>
+      <div class='instructions'>
+        <p>Move from image to image using the controls at the bottom left, or you can also use <code>j</code> and <code>k</code></p>
+      </div>
+    </li>
+    <li>
+      <span class='nice-bullet'>2</span>
+      <div class='instructions'>
+        <p>Zoom the current image with the magnifying glass, or by clicking on the image, or by pressing <code>l</code></p>
+      </div>
+    </li>
+    <li>
+      <span class='nice-bullet'>3</span>
+      <div class='instructions'>
+        <p>When you've scrolled to the end, you can load more images. In the case of galNum, this is infinite and you have to apply judgment sparingly. In the case of galFly you will find a point where instead of <code>Load more</code> you'll find a reddish block. That means there's nothing more to see here :)</p>
+      </div>
+    </li>
+  </ol>
+</div>
+</section>
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,116 @@
+body {
+  font-family: sans-serif;
+  margin: 0;
+}
+header {
+  background-color: #eee;
+}
+.vessel {
+  max-width: 40em;
+  margin: 0 auto;
+  padding: 1em 0;
+}
+#hb {
+  font-size: 1.2em;
+}
+#hb span {
+  color: #808080;
+}
+#hb b {
+  color: #444;
+  cursor: pointer;
+}
+#hb.done b {
+  color: #808080;
+  cursor: auto;
+  font-weight: normal;
+}
+#hb b.s {
+  color: #444;
+  cursor: auto;
+  font-weight: bold;
+}
+form {
+  display: none;
+  margin-top: 1em;
+}
+.v {
+  display: block;
+}
+main,
+#move {
+  text-align: center;
+}
+#gal {
+  padding: 1em;
+  margin: 0;
+  list-style-type: none;
+}
+#gal li {
+  min-height: "+innerHeight+"px;
+  padding: 4em 0;
+}
+#gal img {
+  display: block;
+  max-width: 100%;
+  margin: 0 auto;
+  font-size: 3em;
+  color: #ccc;
+}
+#gal a {
+  display: inline-block;
+  padding: 1em;
+  text-decoration: none;
+  color: #ccc;
+}
+#gal a:hover {
+  color: #808080;
+  text-decoration: underline;
+}
+#move {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 5em;
+  padding: 0;
+  margin: 0;
+  font-size: 1.4em;
+  list-style-type: none;
+  color: #888;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+}
+#move li {
+  float: left;
+  width: 2.75em;
+  height: 2em;
+  line-height: 2em;
+  cursor: pointer;
+}
+#move li:hover {
+  color: #444;
+}
+#up,
+#down {
+  text-indent: .5em;
+}
+#down {
+  clear: left;
+}
+#move #zoom {
+  width: 2em;
+  text-indent: -.5em;
+}
+#more {
+  padding: 1em;
+  font-size: 1.5em;
+  font-weight: bold;
+  background-color: #eee;
+  color: #888;
+  cursor: pointer;
+}
+#more:hover {
+  background-color: #ddd;
+  color: #777;
+}

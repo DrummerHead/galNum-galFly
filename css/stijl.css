@@ -1,0 +1,125 @@
+html {
+  font-size: 1.2em;
+  line-height: 1.4;
+  font-family: sans-serif;
+}
+body {
+  margin: 0;
+  color: #0f0601;
+  background-color: #da8008;
+}
+img {
+  max-width: 100%;
+}
+a {
+  color: #343476;
+}
+a:hover {
+  color: #625ea6;
+}
+.vessel {
+  max-width: 53.4rem;
+  padding: 1em;
+  margin: 0 auto;
+}
+header,
+section,
+.nice-bullet {
+  box-shadow: 0 0.1rem 0.3rem 0 rgba(41, 15, 0, 0.25);
+}
+header {
+  background-color: #b44203;
+  color: #fbf4e1;
+  font-size: 1.2em;
+  text-shadow: .05em .05em 0 rgba(31, 14, 0, 0.4);
+}
+header .vessel {
+  padding: 2em 1em 3em;
+}
+header h1 {
+  margin: .2em 0;
+  line-height: 1;
+  font-size: 2.75em;
+}
+header strong {
+}
+header a {
+  color: #fbf4e1;
+  text-decoration: none;
+  border-bottom: .2em dotted #fbf4e1;
+}
+section {
+  background-color: #eecf15;
+  margin: 5.75em 0;
+}
+section h2 {
+  margin: 1.1em 0;
+  font-size: 1.75em;
+}
+section p {
+  text-shadow: .05em .05em 0 rgba(243, 251, 256, .4);
+}
+.bookmarklet {
+  display: block;
+  padding: 0.5em;
+  font-size: 3.4em;
+  text-align: center;
+  letter-spacing: -0.07em;
+  font-weight: 900;
+  background-color: #B3C704;
+  color: #FFFFFF;
+  text-decoration: none;
+  text-rendering: optimizelegibility;
+  cursor: move;
+}
+small {
+  display: block;
+  margin: 0 0 2.5em;
+  font-size: .8em;
+}
+code {
+}
+.use-steps {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+.use-steps li {
+  margin: 3.5em 0;
+  clear: both;
+}
+.nice-bullet {
+  display: inline-block;
+  width: 1.4em;
+  height: 1.4em;
+  line-height: 1.5;
+  font-size: 3em;
+  margin: 0 .4em .5em 0;
+  font-weight: 900;
+  text-align: center;
+  border-radius: 2em;
+  color: #FBF4E1;
+  background-color: #B44203;
+  float: left;
+}
+.instructions {
+  margin: 0 0 0 5.4em;
+  padding: .5em 0 0 0;
+}
+.instructions > *:first-child {
+  margin-top: 0;
+}
+
+.illustration {
+  clear: both;
+  margin: 1.5 0;
+}
+.illustration img {
+}
+#common-features .nice-bullet {
+  font-size: 1.8em;
+  margin: 0;
+}
+#common-features .instructions {
+  margin: 0 0 0 3.5em;
+}
