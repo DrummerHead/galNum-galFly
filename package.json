@@ -1,0 +1,16 @@
+{
+  "name" : "galNum-galFly",
+  "version" : "0.1.0",
+  "author" : "DrummerHead",
+  "private" : true,
+
+  "devDependencies" : {
+    "grunt" : "~0.4.2",
+    "grunt-contrib-cssmin" : "*",
+    "grunt-contrib-uglify" : "*",
+    "grunt-contrib-htmlmin" : "*",
+    "grunt-cssc" : "*",
+    "grunt-htmlhint" : "*",
+    "matchdep" : "*"
+  }
+}

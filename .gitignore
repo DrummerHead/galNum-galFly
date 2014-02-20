@@ -25,3 +25,5 @@ Session.vim
 ### project specific ###
 
 img/raw/
+# temp/galFly/*
+# temp/galNum/*
