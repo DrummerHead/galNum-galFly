@@ -2,10 +2,10 @@
       http://mcdlr.com/js-inject/             - */
 
 
-/* -  galFly                                                    - *\
-|* -  Render linked images from current page, move with j & k,  - *|
-|* -  increase image size by clicking the image                 - *|
-\* -  v2.6                                                      - */
+/* -  galFly                                                   - *\
+|* -  Render linked images from current page                   - *|
+|*-   To know more check http://mcdlr.com/galNum-galFly/       - *|
+\* -  v3.0                                                     - */
 
 
 

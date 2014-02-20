@@ -3,9 +3,10 @@
 
 
 /* -  galNum                                                   - *\
-|* -  Create numbered sequence of images based on current one, - *|
-|* -  Similar to http://mcdlr.com/gal/ but better              - *|
-\* -  v2.2                                                     - */
+|* -  Create numbered sequence of images based on current one  - *|
+|*-   To know more check http://mcdlr.com/galNum-galFly/       - *|
+\* -  v3.0                                                     - */
+
 
 
 
