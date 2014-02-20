@@ -6,11 +6,10 @@
 
   "devDependencies" : {
     "grunt" : "~0.4.2",
+    "grunt-cli": "~0.1.13",
     "grunt-contrib-cssmin" : "*",
     "grunt-contrib-uglify" : "*",
     "grunt-contrib-htmlmin" : "*",
-    "grunt-cssc" : "*",
-    "grunt-htmlhint" : "*",
     "matchdep" : "*"
   }
 }
