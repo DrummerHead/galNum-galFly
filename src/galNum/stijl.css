@@ -47,7 +47,7 @@ main,
   list-style-type: none;
 }
 #gal li {
-  min-height: "+innerHeight+"px;
+  min-height: '+innerHeight+'px;
   padding: 4em 0;
 }
 #gal img {

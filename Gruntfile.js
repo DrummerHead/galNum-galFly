@@ -6,17 +6,17 @@ module.exports = function(grunt){
     uglify: {
       build: {
         files: {
-          'temp/galFly/gedrag.min.js': ['src/galFly/gedrag.js']
+          'temp/galFly/gedrag.min.js': ['src/galFly/gedrag.js'],
+          'temp/galNum/gedrag.min.js': ['src/galNum/gedrag.js']
         }
       }
     },
     cssmin: {
       minify: {
-        expand: true,
-        cwd: 'src/galFly/',
-        src: ['*.css', '!*.min.css'],
-        dest: 'temp/galFly/',
-        ext: '.min.css'
+        files: {
+          'temp/galFly/stijl.min.css' : ['src/galFly/stijl.css'],
+          'temp/galNum/stijl.min.css' : ['src/galNum/stijl.css']
+        }
       }
     },
     htmlmin: {
@@ -26,7 +26,8 @@ module.exports = function(grunt){
           collapseWhitespace: true
         },
         files: {
-          'temp/galFly/index.min.html': 'temp/galFly/index_for_minification.html'
+          'temp/galFly/index.min.html': 'temp/galFly/index_for_minification.html',
+          'temp/galNum/index.min.html': 'temp/galNum/index_for_minification.html'
         }
       }
     }

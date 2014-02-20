@@ -18,6 +18,7 @@ def compact_gal(which)
   html.gsub!(/<!-- replace with:(.*?)-->.*?<!-- end replace -->/m){ $1 }
   File.write("temp/#{which}/index_for_minification.html", html)
   grunt = %x[grunt htmlmin]
+  puts grunt
 
   html_min = File.read("temp/#{which}/index.min.html")
   html_min.gsub!('{{css}}'){ css_min }
@@ -25,9 +26,11 @@ def compact_gal(which)
   bookmarklet.gsub!('{{html}}'){ html_min }
   File.write("dist/#{which}.js", bookmarklet)
 
-  puts "= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = ="
+  puts "\n= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = ="
   puts "Bookmarklet #{which} has been generated at: dist/#{which}.js"
   puts "paste that code at mcdlr.com/js-inject/ to generate final bookmarklet"
+  puts "= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =\n\n"
 end
 
 compact_gal("galFly")
+compact_gal("galNum")
