@@ -2,6 +2,7 @@
 
 
 
+
 // Helper functions
 //
 var $ = function(element){
@@ -170,11 +171,11 @@ for(var i = 0; i < $numbers.length; i++){
   });
 }
 
-galCommons.init($main);
 
 $form.addEventListener('submit', function(e){
   e.preventDefault();
   createGal($start.value, $shift.value);
+  galCommons.init($main);
 });
 
 

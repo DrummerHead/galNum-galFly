@@ -12,9 +12,9 @@
 
 var html = '{{html}}';
 
-// window.open('data:text/html,' + encodeURIComponent(html));
-document.write(html);
-document.close();
+window.open('data:text/html,' + encodeURIComponent(html));
+// document.write(html);
+// document.close();
 
 
 
