@@ -11,20 +11,21 @@
 
 
 var imgs = Array.prototype.filter.call(document.links, function(val){
-    return /\.(jpe?g|gif|png|tiff|svg)(\?.*)?$/i.test(val.href);
-  });
+  return /\.(jpe?g|gif|png|tiff|svg)(\?.*)?$/i.test(val.href);
+});
 
 var noRepeats = [];
-
-for(var i = 0; i < imgs.length; i++){
-  if(imgs[i].href !== imgs[(i+1) % imgs.length].href){
-    noRepeats.push(imgs[i])
+var imgsLastIndex = imgs.length - 1;
+for(var i = 0; i < imgsLastIndex; i++){
+  if(imgs[i].href !== imgs[i+1].href){
+    noRepeats.push(imgs[i]);
   }
-}
+};
+noRepeats.push(imgs[imgsLastIndex]);
 
 var lis = noRepeats.map(function(val, i){
   return '<li><img id="a' + i + '" src="' + val.href + '" alt="' + val.href + '"><a href="' + val.href + '">' + val.textContent + '</a></li>';
-  });
+});
 
 var stringified = JSON.stringify(lis).replace(/\\/g, '\\\\').replace(/'/g, '\\\'');
 
