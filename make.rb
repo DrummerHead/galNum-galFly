@@ -1,14 +1,14 @@
 #!/usr/bin/env ruby
 
-# Executes grunt, by default this compresses stijl.css and gedrag.js
+# Executes grunt, by default this compresses main.css and main.js
 grunt = %x[grunt]
 puts grunt
 
 def compact_gal(which)
-  css_min = File.read("temp/#{which}/stijl.min.css")
-  js_min = File.read("temp/#{which}/gedrag.min.js")
+  css_min = File.read("temp/#{which}/main.min.css")
+  js_min = File.read("temp/#{which}/main.min.js")
   html = File.read("src/#{which}/index.html")
-  bookmarklet = File.read("src/#{which}/#{which}.js")
+  bookmarklet = File.read("src/#{which}/bookmarklet.js")
 
   # Oh the trouble and madness I've been through
   # http://stackoverflow.com/questions/13458410/

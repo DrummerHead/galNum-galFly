@@ -6,16 +6,16 @@ module.exports = function(grunt){
     uglify: {
       build: {
         files: {
-          'temp/galFly/gedrag.min.js': ['src/galFly/gedrag.js'],
-          'temp/galNum/gedrag.min.js': ['src/galNum/gedrag.js']
+          'temp/galFly/main.min.js': ['src/galFly/main.js'],
+          'temp/galNum/main.min.js': ['src/galNum/main.js']
         }
       }
     },
     cssmin: {
       minify: {
         files: {
-          'temp/galFly/stijl.min.css' : ['src/galFly/stijl.css'],
-          'temp/galNum/stijl.min.css' : ['src/galNum/stijl.css']
+          'temp/galFly/main.min.css' : ['src/galFly/main.css'],
+          'temp/galNum/main.min.css' : ['src/galNum/main.css']
         }
       }
     },
