@@ -45,6 +45,21 @@ var galCommons = (function(){
       $('#zoom').addEventListener('click', function(){
         _this.zoom($('#a' + _this.currentImage));
       });
+      $('#light').addEventListener('click', function(){
+        this.count = this.count ? (this.count + 1) % 3 : 1;
+        switch(this.count){
+          case 0:
+            var color = "#fff";
+          break;
+          case 1:
+            var color = "#808080";
+          break;
+          case 2:
+            var color = "#000";
+          break;
+        }
+        document.body.style.backgroundColor = color;
+      });
     },
 
     goToImage: function(isGoingDown){
