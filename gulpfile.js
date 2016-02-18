@@ -3,6 +3,7 @@ var uglify = require('gulp-uglify');
 var cssnano = require('gulp-cssnano');
 var htmlmin = require('gulp-htmlmin');
 var rename = require('gulp-rename');
+var bs = require('browser-sync').create();
 
 
 gulp.task('uglify', function(){
@@ -26,6 +27,18 @@ gulp.task('htmlmin', function(){
       return path;
     }))
     .pipe(gulp.dest('temp'));
+});
+
+gulp.task('serve:fly', function(){
+  bs.init({
+    port: 9090,
+    server: {
+      baseDir: 'src/galFly/'
+    }
+  });
+
+  gulp.watch(['src/galFly/*.js', 'src/galFly/*.html', 'src/galFly/*.css'])
+    .on('change', bs.reload);
 });
 
 
