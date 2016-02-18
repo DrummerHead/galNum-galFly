@@ -27,3 +27,4 @@ Session.vim
 img/raw/
 temp/galFly/*
 temp/galNum/*
+node_modules
