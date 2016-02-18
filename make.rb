@@ -1,12 +1,11 @@
 #!/usr/bin/env ruby
 
 # Executes grunt, by default this compresses main.css and main.js
-grunt = %x[grunt]
-puts grunt
+puts %x[gulp]
 
 def compact_gal(which)
-  css_min = File.read("temp/#{which}/main.min.css")
-  js_min = File.read("temp/#{which}/main.min.js")
+  css_min = File.read("temp/#{which}/main.css")
+  js_min = File.read("temp/#{which}/main.js")
   html = File.read("src/#{which}/index.html")
   bookmarklet = File.read("src/#{which}/bookmarklet.js")
 
@@ -17,8 +16,7 @@ def compact_gal(which)
 
   html.gsub!(/<!-- replace with:(.*?)-->.*?<!-- end replace -->/m){ $1 }
   File.write("temp/#{which}/index_for_minification.html", html)
-  grunt = %x[grunt htmlmin]
-  puts grunt
+  puts %x[gulp htmlmin]
 
   html_min = File.read("temp/#{which}/index.min.html")
   html_min.gsub!('{{css}}'){ css_min }
