@@ -29,8 +29,8 @@ gulp.task('js', function(){
     .pipe(gulp.dest('.tmp/src'))
 });
 
-gulp.task('uglify', function(){
-  return gulp.src(['src/galFly/main.js', 'src/galNum/main.js' ], {base: 'src/'})
+gulp.task('uglify', ['js'], function(){
+  return gulp.src(['.tmp/src/galFly/main.js', '.tmp/src/galNum/main.js' ], {base: '.tmp/src/'})
     .pipe(uglify())
     .pipe(gulp.dest('temp'));
 });
