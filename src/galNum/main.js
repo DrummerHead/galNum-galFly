@@ -1,105 +1,17 @@
 (function(document, href){
 
 
+var $ = require('selector');
+var galUi = require('gal-ui');
 
 
 // Helper functions
 //
-var $ = function(element){
-  return document.querySelector(element)
-};
 var p = function(num){
   return parseInt(num, 10);
 };
 
 
-// Features common to galFly and galNum
-//
-var galCommons = (function(){
-  return {
-    defaultShift: 25,
-    currentImage: 0,
-    minImage: 0,
-    maxImage: this.defaultShift,
-
-    init: function(galWidthElement){
-      var _this = this;
-      _this.galWidth = parseInt(getComputedStyle(galWidthElement).getPropertyValue('width'), 10);
-      onkeypress = function(e){
-        if(e.charCode == 106){
-          _this.goToImage(true);
-        }
-        else if(e.charCode == 107){
-          _this.goToImage(false);
-        }
-        else if(e.charCode == 108){
-          _this.zoom($('#a' + _this.currentImage));
-        }
-      };
-      $('#down').addEventListener('click', function(){
-        _this.goToImage(true);
-      });
-      $('#up').addEventListener('click', function(){
-        _this.goToImage(false);
-      });
-      $('#zoom').addEventListener('click', function(){
-        _this.zoom($('#a' + _this.currentImage));
-      });
-      $('#light').addEventListener('click', function(){
-        this.count = this.count ? (this.count + 1) % 3 : 1;
-        switch(this.count){
-          case 0:
-            var color = "#fff";
-          break;
-          case 1:
-            var color = "#808080";
-          break;
-          case 2:
-            var color = "#000";
-          break;
-        }
-        document.body.style.backgroundColor = color;
-      });
-    },
-
-    goToImage: function(isGoingDown){
-      if(isGoingDown){
-        if((this.currentImage + 1) >= this.maxImage){
-          scrollTo(0, document.body.scrollHeight);
-        }
-        else{
-          scrollTo(0, $('#a' + ++this.currentImage).offsetTop - 5);
-        }
-      }
-      else{
-        if((this.currentImage - 1) >= this.minImage){
-          scrollTo(0, $('#a' + --this.currentImage).offsetTop - 5);
-        }
-      }
-    },
-
-    zoom: function(el){
-      var t = el.currentTarget || el;
-      var newWidth = t.naturalWidth * (t.ct + 1);
-      if(newWidth <= this.galWidth){
-        t.ct++;
-        t.setAttribute('style', 'width:' + newWidth + 'px;height:' + t.naturalHeight * t.ct + 'px');
-      }
-      else{
-        t.ct = 0;
-        t.setAttribute('style', 'width:100%');
-      }
-    },
-
-    bindResize: function(imgs){
-      for(var i = 0; i < imgs.length; i++){
-        var I = imgs.item(i);
-        I.ct = 1;
-        I.addEventListener('click', this.zoom.bind(this));
-      }
-    }
-  }
-})();
 
 
 // Selector variables and source of data
@@ -143,8 +55,8 @@ var createGal = function(start, shift){
   $main.innerHTML = '';
   var galleryHTML = '<ul id="gal">';
   var hasZeros = /^0*/.test(start);
-  var end = galCommons.maxImage = p(start) + p(shift);
-  galCommons.currentImage = galCommons.minImage = p(start);
+  var end = galUi.maxImage = p(start) + p(shift);
+  galUi.currentImage = galUi.minImage = p(start);
 
   for(var i = p(start); i < end; i++){
     var num = (hasZeros ? zeroize(i, start.length) : i);
@@ -162,7 +74,7 @@ var createGal = function(start, shift){
     createGal(newStart, shift);
   });
 
-  galCommons.bindResize(document.querySelectorAll('img'));
+  galUi.bindResize(document.querySelectorAll('img'));
 };
 
 
@@ -182,7 +94,7 @@ for(var i = 0; i < $numbers.length; i++){
     hrefParts[this.getAttribute('data-position')].isS = true;
     constantHref = splitBySelected(hrefParts);
     $start.value = this.textContent;
-    $shift.value = galCommons.defaultShift;
+    $shift.value = galUi.defaultShift;
   });
 }
 
@@ -190,7 +102,7 @@ for(var i = 0; i < $numbers.length; i++){
 $form.addEventListener('submit', function(e){
   e.preventDefault();
   createGal($start.value, $shift.value);
-  galCommons.init($main);
+  galUi.init($main);
 });
 
 

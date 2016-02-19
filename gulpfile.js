@@ -4,7 +4,30 @@ var cssnano = require('gulp-cssnano');
 var htmlmin = require('gulp-htmlmin');
 var rename = require('gulp-rename');
 var bs = require('browser-sync').create();
+var through2 = require('through2')
+var browserify = require('browserify');
 
+
+gulp.task('js', function(){
+  return gulp.src(['src/galFly/main.js', 'src/galNum/main.js' ], {base: 'src/'})
+    .pipe(through2.obj(function(file, enc, next){
+      browserify({
+        entries: file.path,
+        debug: false
+      }).bundle(function(err, res){
+        if(err){
+          return next(err);
+        }
+        file.contents = res;
+        next(null, file);
+      })
+    }))
+    .on('error', function(error){
+      console.log(error.stack);
+      this.emit('end');
+    })
+    .pipe(gulp.dest('.tmp/src'))
+});
 
 gulp.task('uglify', function(){
   return gulp.src(['src/galFly/main.js', 'src/galNum/main.js' ], {base: 'src/'})
@@ -29,17 +52,24 @@ gulp.task('htmlmin', function(){
     .pipe(gulp.dest('temp'));
 });
 
-gulp.task('serve:fly', function(){
-  bs.init({
-    port: 9090,
-    server: {
-      baseDir: 'src/galFly/'
-    }
-  });
+var generateServer = function(port, name){
+  return function(){
+    bs.init({
+      port: port,
+      server: {
+        baseDir: ['.tmp/src/' + name + '/', 'src/' + name + '/']
+      }
+    });
 
-  gulp.watch(['src/galFly/*.js', 'src/galFly/*.html', 'src/galFly/*.css'])
-    .on('change', bs.reload);
-});
+    gulp.watch(['src/' + name + '/*.*', 'src/node_modules/*.js'])
+      .on('change', bs.reload);
+
+    gulp.watch(['src/' + name + '/main.js', 'src/node_modules/*.js'], ['js']);
+  };
+}
+
+gulp.task('serve:fly', ['js'], generateServer(9090, 'galFly'));
+gulp.task('serve:num', ['js'], generateServer(9080, 'galNum'));
 
 
 gulp.task('default', ['uglify', 'cssmin']);
