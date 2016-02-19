@@ -6,6 +6,8 @@ var rename = require('gulp-rename');
 var bs = require('browser-sync').create();
 var through2 = require('through2')
 var browserify = require('browserify');
+var sass = require('gulp-sass');
+var autoprefixer = require('gulp-autoprefixer');
 
 
 gulp.task('js', function(){
@@ -35,8 +37,19 @@ gulp.task('uglify', ['js'], function(){
     .pipe(gulp.dest('temp'));
 });
 
-gulp.task('cssmin', function(){
-  return gulp.src(['src/galFly/main.css', 'src/galNum/main.css'], {base: 'src/'})
+gulp.task('sass', function(){
+  return gulp.src(['src/galFly/main.scss', 'src/galNum/main.scss'], {base: 'src/'})
+    .pipe(sass.sync({
+      outputStyle: 'expanded'
+    })).on('error', sass.logError)
+    .pipe(autoprefixer({
+      browsers: ['last 1 version']
+    }))
+    .pipe(gulp.dest('.tmp/src'))
+});
+
+gulp.task('cssmin', ['sass'], function(){
+  return gulp.src(['.tmp/src/galFly/main.css', '.tmp/src/galNum/main.css'], {base: '.tmp/src/'})
     .pipe(cssnano())
     .pipe(gulp.dest('temp'));
 });
