@@ -74,10 +74,14 @@ var generateServer = function(port, name){
       }
     });
 
-    gulp.watch(['src/' + name + '/*.*', 'src/node_modules/*.js'])
-      .on('change', bs.reload);
-
     gulp.watch(['src/' + name + '/main.js', 'src/node_modules/*.js'], ['js']);
+    gulp.watch(['src/**/*.scss'], ['sass']);
+
+    gulp.watch([
+      '.tmp/src/' + name + '/main.js',
+      '.tmp/src/' + name + '/main.css'
+    ]).on('change', bs.reload);
+
   };
 }
 
