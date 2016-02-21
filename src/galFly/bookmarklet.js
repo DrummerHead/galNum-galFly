@@ -11,7 +11,7 @@
 
 
 var imgs = Array.prototype.filter.call(document.links, function(val){
-  return /\.(jpe?g|gif|png|tiff|svg)(\?.*)?$/i.test(val.href);
+  return /\.(jpe?g|gif|png|tiff|webm|svg)(\?.*)?$/i.test(val.href);
 });
 
 var noRepeats = [];
@@ -24,7 +24,12 @@ for(var i = 0; i < imgsLastIndex; i++){
 noRepeats.push(imgs[imgsLastIndex]);
 
 var lis = noRepeats.map(function(val, i){
-  return '<li><img id="a' + i + '" src="' + val.href + '" alt="' + val.href + '"><a href="' + val.href + '">' + val.textContent + '</a></li>';
+  if(/\.webm$/.test(val.href)){
+    return '<li><video id="a' + i + '" src="' + val.href + '" controls preload loop></video><a href="' + val.href + '">' + val.textContent + '</a></li>';
+  }
+  else {
+    return '<li><img id="a' + i + '" src="' + val.href + '" alt="' + val.href + '"><a href="' + val.href + '">' + val.textContent + '</a></li>';
+  }
 });
 
 var stringified = JSON.stringify(lis).replace(/\\/g, '\\\\').replace(/'/g, '\\\'');

@@ -4,10 +4,11 @@
   list-style-type: none;
 }
 #gal li {
-  min-height: '+innerHeight+'px;
+  min-height: 100vh;
   padding: 4em 0;
 }
-#gal img {
+#gal img,
+#gal video {
   display: block;
   max-width: 100%;
   margin: 0 auto;
