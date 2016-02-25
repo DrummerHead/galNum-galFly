@@ -23,6 +23,7 @@ def compact_gal(which)
   html_min.gsub!('{{js}}'){ js_min }
   bookmarklet.gsub!('{{html}}'){ html_min }
   File.write("dist/#{which}.js", bookmarklet)
+  puts %[gulp uglify:dist]
 
   puts "\n= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = ="
   puts "Bookmarklet #{which} has been generated at: dist/#{which}.js"

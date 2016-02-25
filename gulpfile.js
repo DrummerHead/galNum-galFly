@@ -37,6 +37,25 @@ gulp.task('uglify', ['js'], function(){
     .pipe(gulp.dest('temp'));
 });
 
+gulp.task('uglify:dist', function(){
+  return gulp.src(['dist/*.js', '!dist/*.min.js', '!dist/*.html.js'])
+    .pipe(uglify())
+    .pipe(rename({suffix: '.min'}))
+    .pipe(gulp.dest('dist'))
+    .pipe(through2.obj(function(file, enc, next){
+      var name = file.relative.replace('.min.js','');
+      var preFile = '<a href="javascript:(function(){';
+      var safeJS = encodeURIComponent(file.contents.toString());
+      var postFile = '})();" class=\'bookmarklet\' title=\'Drag me to your Bookmarks Toolbar\'>' + name + '</a>';
+
+      file.contents = new Buffer(preFile + safeJS + postFile);
+
+      return next(null, file)
+    }))
+    .pipe(rename({suffix: '.html'}))
+    .pipe(gulp.dest('dist'));
+});
+
 gulp.task('sass', function(){
   return gulp.src(['src/galFly/main.scss', 'src/galNum/main.scss'], {base: 'src/'})
     .pipe(sass.sync({
