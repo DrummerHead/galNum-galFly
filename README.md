@@ -2,12 +2,6 @@
 
 For a description of these bookmarklets, check: http://mcdlr.com/galNum-galFly/ or `index.html`
 
-## Requirements
-
-To use the bookmarklets you only need a browser.
-
-To modify them and make use of these build tool you'll need [Grunt](http://gruntjs.com/) (and thus [node.js](http://nodejs.org/) for [npm](https://www.npmjs.org/))
-
 
 ## Modifying the bookmarklets
 
