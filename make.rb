@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 
-# Executes grunt, by default this compresses main.css and main.js
+# Executes gulp, by default this compresses main.css and main.js
 puts %x[gulp]
 
 def compact_gal(which)
@@ -23,11 +23,12 @@ def compact_gal(which)
   html_min.gsub!('{{js}}'){ js_min }
   bookmarklet.gsub!('{{html}}'){ html_min }
   File.write("dist/#{which}.js", bookmarklet)
-  puts %[gulp uglify:dist]
+  puts %x[gulp uglify:dist]
 
   puts "\n= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = ="
-  puts "Bookmarklet #{which} has been generated at: dist/#{which}.js"
-  puts "paste that code at mcdlr.com/js-inject/ to generate final bookmarklet"
+  puts "  Bookmarklet #{which} has been generated"
+  puts "  - Use dist/#{which}.min.js for http://mcdlr.com/js-inject/"
+  puts "  - Use dist/#{which}.min.html.js for index.html"
   puts "= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =\n\n"
 end
 
