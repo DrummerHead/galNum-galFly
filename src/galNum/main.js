@@ -73,8 +73,6 @@ var createGal = function(start, shift){
     $start.value = newStart;
     createGal(newStart, shift);
   });
-
-  galUi.bindResize(document.querySelectorAll('img'));
 };
 
 

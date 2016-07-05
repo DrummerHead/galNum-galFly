@@ -40,7 +40,6 @@ var createGal = function(start){
   }
 
   $gal.innerHTML = galleryHTML;
-  galUi.bindResize(document.querySelectorAll('img'));
 };
 
 
