@@ -107,5 +107,19 @@ var generateServer = function(port, name){
 gulp.task('serve:fly', ['js'], generateServer(9090, 'galFly'));
 gulp.task('serve:num', ['js'], generateServer(9080, 'galNum'));
 
+gulp.task('serve:docs', function(){
+  bs.init({
+    port: 9070,
+    server: {
+      baseDir: '.'
+    }
+  });
+
+  gulp.watch([
+    'index.html',
+    'css/stijl.css'
+  ]).on('change', bs.reload);
+});
+
 
 gulp.task('default', ['uglify', 'cssmin']);
