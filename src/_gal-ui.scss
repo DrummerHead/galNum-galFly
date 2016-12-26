@@ -21,6 +21,13 @@
   object-fit: contain;
   color: #ccc;
 }
+#gal .zoom {
+  height: auto;
+}
+#gal .zoom img {
+  width: 100%;
+  height: auto;
+}
 #gal a {
   display: block;
   height: 2rem;
